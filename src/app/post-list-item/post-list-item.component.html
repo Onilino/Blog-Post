@@ -1,0 +1,23 @@
+<li [ngClass]="{'list-group-item': true,
+                'list-group-item-success': onIsLoved() === 'Loved',
+                'list-group-item-danger': onIsLoved() === 'DLoved'}">
+    <h2 style="float:left;">{{ postName }}</h2>
+    <h3 style="text-align:right;color:gray;font-style:italic">{{ postDate | date : 'short' }}</h3>
+    <br/>
+    <p>{{ postContent }}</p>
+    <button class="btn btn-success" (click)="onLike()">
+        <img alt="like" width="25" height="25" src="../assets/img/like.png"> {{ postLove }}
+    </button>
+    <button class="btn btn-danger" (click)="onDLike()">
+        <img alt="like" width="25" height="25" src="../assets/img/dislike.png"> {{ postDLove }}
+    </button>
+</li>
+
+
+<style>
+li:hover {
+    background-color: #eee;
+    -webkit-transition: background-color 0.5s;
+
+}
+</style>
