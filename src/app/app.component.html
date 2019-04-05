@@ -2,7 +2,8 @@
     <div class="row">
       <div class="col-xs-12">
       <h1>Posts</h1>
-            <app-post-list></app-post-list>
+            <app-post-list [posts]="postlist"></app-post-list>
+            <button class="btn btn-primary" type="button" style="float:right" (click)="onAddPost()"><img width="25" height="25" alt="plus" src="../assets/img/plus.png"> Ajouter</button>
       </div>
     </div>
   </div>

@@ -1,11 +1,5 @@
 <ul class="list-group">
-    <app-post-list-item *ngFor="let post of postlist"
-                        [postName]="post.title"
-                        [postContent]="post.content"
-                        [postLike]="post.loveIts"
-                        [postLove]="post.love"
-                        [postDLove]="post.dLove"
-                        [postDate]="post.created_at">
+    <app-post-list-item *ngFor="let postIt of posts"
+                        [post]="postIt">
     </app-post-list-item>
 </ul>
-<button class="btn btn-primary" type="button" style="float:right" (click)="onAddPost()"><img width="25" height="25" alt="plus" src="../assets/img/plus.png"> Ajouter</button>

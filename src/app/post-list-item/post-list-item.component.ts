@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SafeScript } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post-list-item',
@@ -8,32 +7,28 @@ import { SafeScript } from '@angular/platform-browser';
 })
 export class PostListItemComponent implements OnInit {
 
-  @Input() postName: string;
-  @Input() postContent: string;
-  @Input() postLike: number;
-  @Input() postLove: number;
-  @Input() postDLove: number;
-  @Input() postDate: Date;
-  
+  @Input() post: {
+    id: number,
+    title: String,
+    content: String,
+    like: number,
+    unlike: number,
+    created_at: Date
+  };
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onLike() {
-    this.postLove++;
-    this.postLike++;
+    this.post.like++;
   }
-  onDLike() {
-    this.postDLove++;
-    this.postLike--;
+  onUnlike() {
+    this.post.unlike++;
   }
-  onIsLoved() {
-    if (this.postLike > 0)
-      return 'Loved';
-    else if (this.postLike === 0)
-      return 'Neutral'
-    else
-      return 'DLoved';
+  
+  onDeletePost() {
+    console.log(this.post.id);
   }
 }
