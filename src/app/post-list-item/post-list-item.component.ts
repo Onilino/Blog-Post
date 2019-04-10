@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PostService } from '../services/post.service'
 
 @Component({
   selector: 'app-post-list-item',
@@ -15,8 +16,9 @@ export class PostListItemComponent implements OnInit {
     unlike: number,
     created_at: Date
   };
+  @Input() index: number;
 
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
   }
@@ -29,6 +31,6 @@ export class PostListItemComponent implements OnInit {
   }
   
   onDeletePost() {
-    console.log(this.post.id);
+    this.postService.deletePost(this.index);
   }
 }

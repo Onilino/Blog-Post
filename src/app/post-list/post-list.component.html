@@ -1,5 +1,6 @@
 <ul class="list-group">
-    <app-post-list-item *ngFor="let postIt of posts"
-                        [post]="postIt">
+    <app-post-list-item *ngFor="let postIt of posts; let i = index"
+                        [post]="postIt"
+                        [index]="i">
     </app-post-list-item>
 </ul>
