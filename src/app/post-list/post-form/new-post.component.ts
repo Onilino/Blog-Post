@@ -5,11 +5,11 @@ import { PostsService } from '../../services/posts.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-post-form',
-  templateUrl: './post-form.component.html',
-  styleUrls: ['./post-form.component.css']
+  selector: 'app-new-post',
+  templateUrl: './new-post.component.html',
+  styleUrls: ['./new-post.component.css']
 })
-export class PostFormComponent implements OnInit {
+export class NewPostComponent implements OnInit {
 
   postForm: FormGroup;
   fileIsUploading = false;
@@ -38,6 +38,8 @@ export class PostFormComponent implements OnInit {
     const content = this.postForm.get('content').value;
     const newPost = new Post(title, author);
     newPost.content = content;
+    newPost.like = 0;
+    newPost.dislike = 0;
     if(this.fileUrl && this.fileUrl !== '') {
       newPost.photo = this.fileUrl;
     }

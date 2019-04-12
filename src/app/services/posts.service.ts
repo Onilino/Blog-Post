@@ -34,6 +34,32 @@ export class PostsService {
       );
   }
 
+  likePost(post: Post) {
+    const postIndex = this.posts.findIndex(
+      (postEL) => {
+        if(postEL === post) {
+          return true;
+        }
+      }
+    );
+    this.posts.splice(postIndex, 1, post);
+    this.savePosts();
+    this.emitPosts();
+  }
+
+  dislikePost(post: Post) {
+    const postIndex = this.posts.findIndex(
+      (postEL) => {
+        if(postEL === post) {
+          return true;
+        }
+      }
+    );
+    this.posts.splice(postIndex, 1, post);
+    this.savePosts();
+    this.emitPosts();
+  }
+
   getSinglePost(id: number) {
     return new Promise(
       (resolve, reject) => {

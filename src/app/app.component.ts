@@ -13,12 +13,12 @@ export class AppComponent {
 
   constructor() {
     var config = {
-      apiKey: "AIzaSyA3IsaT_8CTTKVGuXkiAXAjEzFWNvQZHTs",
-      authDomain: "myocproject.firebaseapp.com",
-      databaseURL: "https://myocproject.firebaseio.com",
-      projectId: "myocproject",
-      storageBucket: "myocproject.appspot.com",
-      messagingSenderId: "400434845430"
+      apiKey: "AIzaSyCitY--DaULyiZpwToPVLujWJpzgDbCrMw",
+      authDomain: "blog-post-f25bc.firebaseapp.com",
+      databaseURL: "https://blog-post-f25bc.firebaseio.com",
+      projectId: "blog-post-f25bc",
+      storageBucket: "blog-post-f25bc.appspot.com",
+      messagingSenderId: "1022127828862"
     };
     firebase.initializeApp(config);
   }

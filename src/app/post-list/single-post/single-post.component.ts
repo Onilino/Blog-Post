@@ -3,6 +3,7 @@ import { Post } from '../../models/post.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
 
+
 @Component({
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
@@ -25,6 +26,22 @@ export class SinglePostComponent implements OnInit {
       }
     );
   }
+
+  onDeletePost(post: Post) {
+    if(confirm("Voulez-vous supprimer définitivement ce post?"))
+      this.postsService.removePost(post);
+  }
+
+  onLikePost(post: Post) {
+    post.like++;
+    this.postsService.likePost(post);
+  }
+
+  onDislikePost(post: Post) {
+    post.dislike++;
+    this.postsService.dislikePost(post);
+  }
+
 
   onBack() {
     this.router.navigate(['/posts']);

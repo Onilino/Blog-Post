@@ -14,8 +14,10 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   posts: Post[];
   postsSubscription: Subscription;
+  isActing = false;
 
-  constructor(private postsService: PostsService, private router: Router) {}
+  constructor(private postsService: PostsService,
+              private router: Router) {}
 
   ngOnInit() {
     this.postsSubscription = this.postsService.postsSubject.subscribe(
@@ -31,13 +33,28 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   onDeletePost(post: Post) {
-    this.postsService.removePost(post);
+    if(confirm("Voulez-vous supprimer définitivement ce post?"))
+      this.postsService.removePost(post);
   }
 
   onViewPost(id: number) {
     this.router.navigate(['/posts', 'view', id]);
   }
   
+  onLikePost(post: Post) {
+    this.isActing = true;
+    post.like++;
+    this.postsService.likePost(post);
+    this.isActing = false;
+  }
+
+  onDislikePost(post: Post) {
+    this.isActing = true;
+    post.dislike++;
+    this.postsService.dislikePost(post);
+    this.isActing = false;
+  }
+
   ngOnDestroy() {
     this.postsSubscription.unsubscribe();
   }
