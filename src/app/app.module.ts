@@ -1,26 +1,54 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
+
+import { PostsService } from './services/posts.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostListComponent } from './post-list/post-list.component';
-import { PostListItemComponent } from './post-list-item/post-list-item.component';
-import { PostService } from './services/post.service';
+import { SinglePostComponent } from './post-list/single-post/single-post.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { PostFormComponent } from './post-list/post-form/post-form.component';
+import { HeaderComponent } from './header/header.component';
+
+const appRoutes: Routes = [
+  { path: 'auth/signup', component: SignupComponent },
+  { path: 'auth/signin', component: SigninComponent },
+  { path: 'posts', canActivate: [AuthGuardService], component: PostListComponent },
+  { path: 'posts/new', canActivate: [AuthGuardService], component: PostFormComponent },
+  { path: 'posts/view/:id', canActivate: [AuthGuardService], component: SinglePostComponent },
+  { path: '', redirectTo: 'posts', pathMatch: 'full' },
+  { path: '**', redirectTo: 'posts' }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     PostListComponent,
-    PostListItemComponent
+    SinglePostComponent,
+    SignupComponent,
+    SigninComponent,
+    PostFormComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    PostService
+    PostsService,
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 {
-  "name": "my-first-tp",
+  "name": "my-blog-post",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -21,6 +21,7 @@
     "@angular/router": "~7.2.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
+    "firebase": "^5.9.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

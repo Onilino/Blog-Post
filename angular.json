@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-first-tp": {
+    "my-blog-post": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -35,7 +35,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-first-tp",
+            "outputPath": "dist/my-blog-post",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -46,7 +46,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "../my-first-tp/node_modules/bootstrap/dist/css/bootstrap.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -81,18 +81,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "my-first-tp:build"
+            "browserTarget": "my-blog-post:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "my-first-tp:build:production"
+              "browserTarget": "my-blog-post:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "my-first-tp:build"
+            "browserTarget": "my-blog-post:build"
           }
         },
         "test": {
@@ -126,7 +126,7 @@
         }
       }
     },
-    "my-first-tp-e2e": {
+    "my-blog-post-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -135,11 +135,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "my-first-tp:serve"
+            "devServerTarget": "my-blog-post:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "my-first-tp:serve:production"
+              "devServerTarget": "my-blog-post:serve:production"
             }
           }
         },
@@ -155,5 +155,5 @@
       }
     }
   },
-  "defaultProject": "my-first-tp"
+  "defaultProject": "my-blog-post"
 }

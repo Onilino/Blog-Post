@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from './services/post.service'
+
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
-
 export class AppComponent {
 
-  postlist: any[];
+  title = 'my-blog-app';
 
-  constructor(private postService: PostService) {
-
+  constructor() {
+    var config = {
+      apiKey: "AIzaSyA3IsaT_8CTTKVGuXkiAXAjEzFWNvQZHTs",
+      authDomain: "myocproject.firebaseapp.com",
+      databaseURL: "https://myocproject.firebaseio.com",
+      projectId: "myocproject",
+      storageBucket: "myocproject.appspot.com",
+      messagingSenderId: "400434845430"
+    };
+    firebase.initializeApp(config);
   }
 
-  ngOnInit() {
-    this.postlist = this.postService.postlist;
-  }
-  
-  onAddPost() {
-    this.postService.addPost();
-  }
 }
