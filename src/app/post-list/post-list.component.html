@@ -10,8 +10,8 @@
             (click)="onViewPost(i)">
             <h3 class="list-group-item-heading">
               {{ post.title }}
-              <button class="btn btn-danger pull-right" (click)="onDeletePost(post)">
-                <img width="25" height="25" src="../assets/img/minus.png" /> Supprimer
+              <button class="btn btn-danger pull-right" type="button" (click)="onDeletePost(post)">
+                <img width="25" height="25" src="../assets/img/bin.png" />
               </button>
             </h3>
             <p class="list-group-item-text" style="font-style:italic">{{ post.author }}</p><br />
@@ -25,6 +25,7 @@
                 <img width="25" height="25" src="../assets/img/dislike.png" />
                 {{ post.dislike }}
             </button>
+            <p class="pull-right" style="font-style:italic">{{ post.date | date: 'MM/dd/yyyy' }}</p>
           </button>
         </ul>
       <button class="btn btn-primary" (click)="onNewPost()">Nouveau post</button>

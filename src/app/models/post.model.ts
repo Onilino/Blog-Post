@@ -3,6 +3,7 @@ export class Post {
     content: string;
     like: number;
     dislike: number;
+    date: any;
     constructor(public title: string, public author: string) {
     }
   }

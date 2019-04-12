@@ -30,6 +30,7 @@ export class SinglePostComponent implements OnInit {
   onDeletePost(post: Post) {
     if(confirm("Voulez-vous supprimer définitivement ce post?"))
       this.postsService.removePost(post);
+      this.router.navigate(['/posts']);
   }
 
   onLikePost(post: Post) {

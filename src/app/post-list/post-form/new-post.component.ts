@@ -16,6 +16,7 @@ export class NewPostComponent implements OnInit {
   fileUrl: string;
   fileUploaded = false;
 
+
   constructor(private formBuilder: FormBuilder,
               private postsService: PostsService,
               private router: Router) { }
@@ -40,6 +41,7 @@ export class NewPostComponent implements OnInit {
     newPost.content = content;
     newPost.like = 0;
     newPost.dislike = 0;
+    newPost.date = new Date().getTime();
     if(this.fileUrl && this.fileUrl !== '') {
       newPost.photo = this.fileUrl;
     }

@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-xs-12 list-group-item">
       <button class="btn btn-default pull-right" (click)="onBack()">Retour</button>
-    <img style="max-width:400px;" *ngIf="post.photo" [src]="post.photo">
+    <img style="max-width:500px;" *ngIf="post.photo" [src]="post.photo">
+    <p style="font-style:italic">Mis à jour : {{ post.date | date : 'short' }}</p>
     <h1>{{ post.title }}</h1>
     <h3>{{ post.author }}</h3>
     <p>{{ post.content }}</p>
