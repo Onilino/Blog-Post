@@ -10,11 +10,11 @@
 </div>
 <nav class="list-group-item">
   <div class="btn-group" role="group" aria-label="Basic example">
-    <button title="Liker" class="btn btn-success" (click)="onLikePost(post)">
+    <button title="Liker" class="btn btn-success" (click)="onLikePostFromSingle()">
         <img width="25" height="25" src="../assets/img/like.png" />
         {{ post.like }}
     </button>
-    <button title="Disliker"class="btn btn-danger"  (click)="onDislikePost(post)">
+    <button title="Disliker"class="btn btn-danger"  (click)="onDislikePostFromSingle()">
         <img width="25" height="25" src="../assets/img/dislike.png" />
         {{ post.dislike }}
     </button>
@@ -22,7 +22,7 @@
         <img width="25" height="25" src="../assets/img/pencil.png" />
     </button>
   </div>
-  <button class="btn pull-right" (click)="onDeletePost(post)">
+  <button class="btn pull-right" (click)="onDeletePostFromSingle()">
       <img width="25" height="25" src="../assets/img/bin.png" />
   </button>
 </nav>

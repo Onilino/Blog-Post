@@ -34,6 +34,20 @@ export class PostsService {
       );
   }
 
+  getSinglePost(id: number) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/posts/' + id).once('value').then(
+          (data: DataSnapshot) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
   likePost(post: Post) {
     const postIndex = this.posts.findIndex(
       (postEL) => {
@@ -59,23 +73,25 @@ export class PostsService {
         }
       }
     );
+    //const ref = firebase.database().ref('/posts/' + postIndex + '/dislikes');
+    //ref.transaction(function(currentDislikes) {
+    //  return (currentDislikes || 0) + 1;
+    //});
     this.posts.splice(postIndex, 1, post);
     this.savePosts();
     this.emitPosts();
   }
 
-  getSinglePost(id: number) {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.database().ref('/posts/' + id).once('value').then(
-          (data: DataSnapshot) => {
-            resolve(data.val());
-          }, (error) => {
-            reject(error);
-          }
-        );
-      }
-    );
+  likePostFromSingle(post: Post, id: number) {
+    this.posts.splice(id, 1, post);
+    this.savePosts();
+    this.emitPosts();
+  }
+
+  dislikePostFromSingle(post: Post, id: number) {
+    this.posts.splice(id, 1, post);
+    this.savePosts();
+    this.emitPosts();
   }
 
   createNewPost(newPost: Post) {
@@ -103,7 +119,25 @@ export class PostsService {
         }
       }
     );
+    alert(postIndexToRemove);
     this.posts.splice(postIndexToRemove, 1);
+    this.savePosts();
+    this.emitPosts();
+  }
+
+  removePostFromSingle(post: Post, id: number) {
+    if(post.photo) {
+      const storageRef = firebase.storage().refFromURL(post.photo);
+      storageRef.delete().then(
+        () => {
+          console.log('Photo removed!');
+        },
+        (error) => {
+          console.log('Could not remove photo! : ' + error);
+        }
+      );
+    }
+    this.posts.splice(id, 1);
     this.savePosts();
     this.emitPosts();
   }

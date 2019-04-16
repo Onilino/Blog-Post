@@ -29,21 +29,21 @@ export class SinglePostComponent implements OnInit {
     );
   }
 
-  onDeletePost(post: Post) {
+  onDeletePostFromSingle() {
     if(confirm("Voulez-vous supprimer définitivement ce post?")) {
-      this.postsService.removePost(post);
+      this.postsService.removePostFromSingle(this.post, this.id);
       this.router.navigate(['/posts']);
     }
   }
 
-  onLikePost(post: Post) {
-    post.like++;
-    this.postsService.likePost(post);
+  onLikePostFromSingle() {
+    this.post.like++;
+    this.postsService.likePostFromSingle(this.post, this.id);
   }
 
-  onDislikePost(post: Post) {
-    post.dislike++;
-    this.postsService.dislikePost(post);
+  onDislikePostFromSingle() {
+    this.post.dislike++;
+    this.postsService.dislikePostFromSingle(this.post, this.id);
   }
 
   onEditPost(id: number) {
