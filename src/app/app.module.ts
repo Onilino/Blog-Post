@@ -16,12 +16,14 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { NewPostComponent } from './post-list/post-form/new-post.component';
 import { HeaderComponent } from './header/header.component';
+import { EditPostComponent } from './post-list/edit-post/edit-post.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
   { path: 'posts', canActivate: [AuthGuardService], component: PostListComponent },
   { path: 'posts/new', canActivate: [AuthGuardService], component: NewPostComponent },
+  { path: 'posts/edit/:id', canActivate: [AuthGuardService], component: EditPostComponent},
   { path: 'posts/view/:id', canActivate: [AuthGuardService], component: SinglePostComponent },
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
   { path: '**', redirectTo: 'posts' }
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     SignupComponent,
     SigninComponent,
     NewPostComponent,
-    HeaderComponent
+    HeaderComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,

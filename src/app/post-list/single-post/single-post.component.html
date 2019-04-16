@@ -2,21 +2,26 @@
   <div class="col-xs-12 list-group-item">
       <button class="btn btn-default pull-right" (click)="onBack()">Retour</button>
     <img style="max-width:500px;" *ngIf="post.photo" [src]="post.photo">
-    <p style="font-style:italic">Mis à jour : {{ post.date | date : 'short' }}</p>
+    <p style="font-style:italic">Mis à jour : {{ post.date | date : 'dd MMMM yyyy HH:mm:ss' }}</p>
     <h1>{{ post.title }}</h1>
     <h3>{{ post.author }}</h3>
     <p>{{ post.content }}</p>
   </div>
 </div>
 <nav class="list-group-item">
-  <button class="btn btn-success"  (click)="onLikePost(post)">
-    <img width="25" height="25" src="../assets/img/like.png" />
-    {{ post.like }}
-  </button>
-  <button class="btn btn-danger"  (click)="onDislikePost(post)">
-    <img width="25" height="25" src="../assets/img/dislike.png" />
-    {{ post.dislike }}
-  </button>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button title="Liker" class="btn btn-success" (click)="onLikePost(post)">
+        <img width="25" height="25" src="../assets/img/like.png" />
+        {{ post.like }}
+    </button>
+    <button title="Disliker"class="btn btn-danger"  (click)="onDislikePost(post)">
+        <img width="25" height="25" src="../assets/img/dislike.png" />
+        {{ post.dislike }}
+    </button>
+    <button title="Editer" class="btn btn-warning" (click)="onEditPost(id)">
+        <img width="25" height="25" src="../assets/img/pencil.png" />
+    </button>
+  </div>
   <button class="btn pull-right" (click)="onDeletePost(post)">
       <img width="25" height="25" src="../assets/img/bin.png" />
   </button>

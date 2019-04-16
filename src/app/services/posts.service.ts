@@ -42,6 +42,10 @@ export class PostsService {
         }
       }
     );
+    //const ref = firebase.database().ref('/posts/' + postIndex + '/likes');
+    //ref.transaction(function(currentLikes) {
+    //  return (currentLikes || 0) + 1;
+    //});
     this.posts.splice(postIndex, 1, post);
     this.savePosts();
     this.emitPosts();
@@ -102,7 +106,19 @@ export class PostsService {
     this.posts.splice(postIndexToRemove, 1);
     this.savePosts();
     this.emitPosts();
-}
+  }
+
+  removeAll() {
+    this.posts.splice(0, this.posts.length)
+    this.savePosts();
+    this.emitPosts();
+  }
+
+  editPost(newPost: Post, postId: number) {
+    this.posts.splice(postId, 1, newPost);
+    this.savePosts();
+    this.emitPosts();
+  }
 
   uploadFile(file: File) {
     return new Promise(

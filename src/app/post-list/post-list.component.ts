@@ -14,8 +14,9 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   posts: Post[];
   postsSubscription: Subscription;
-  isActing = false;
-
+  isActing: boolean = false;
+  t: boolean;
+  
   constructor(private postsService: PostsService,
               private router: Router) {}
 
@@ -32,13 +33,32 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/posts', 'new']);
   }
 
-  onDeletePost(post: Post) {
-    if(confirm("Voulez-vous supprimer définitivement ce post?"))
-      this.postsService.removePost(post);
+  onViewPost(id: number) {
+    if (this.isActing === false)
+      this.router.navigate(['/posts', 'view', id]);
+    else
+      this.isActing = false;
   }
 
-  onViewPost(id: number) {
-    this.router.navigate(['/posts', 'view', id]);
+  onDeletePost(post: Post) {
+    this.isActing = true;
+    if(confirm("Voulez-vous supprimer définitivement ce post?")) {
+      this.postsService.removePost(post);
+      this.t = true;
+    }
+    if (this.t) {
+      this.isActing = false;
+      this.t = false;
+    }
+  }
+onEditPost(id: number) {
+    this.router.navigate(['/posts', 'edit', id]);
+  }
+  
+
+  onDeleteAll() {
+    if(confirm("Voulez-vous supprimer tous les posts?"))
+    this.postsService.removeAll();
   }
   
   onLikePost(post: Post) {
